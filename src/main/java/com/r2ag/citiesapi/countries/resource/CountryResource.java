@@ -26,10 +26,7 @@ public class CountryResource {
     public ResponseEntity getOne(@PathVariable Long id){
         Optional<Country> optional = repository.findById(id);
 
-        if (optional.isPresent()){
-            return ResponseEntity.ok().body(optional.get());
-        }else {
-            return ResponseEntity.notFound().build();
-        }
+        return (optional.isPresent())? ResponseEntity.ok().body(optional.get()): ResponseEntity.notFound().build();
+
     }
 }
